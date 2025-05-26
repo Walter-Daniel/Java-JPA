@@ -35,6 +35,24 @@ public class StudentRepository {
         return (Student) query.getSingleResult();
     }
 
+    public Student updateFirstNameById(String firstname, Long id){
+        entityManager.getTransaction().begin();
+        Query query = entityManager.createQuery("Update Student set firstname = '" + firstname + "' where id = " + id);
+        query.executeUpdate();
+        entityManager.getTransaction().commit();
+        entityManager.clear();
+        return findById(id);
+    }
+
+    public Student updateLastNameById(String lastname, Long id){
+        entityManager.getTransaction().begin();
+        Query query = entityManager.createQuery("Update Student set lastname = '" + lastname + "' where id = " + id);
+        query.executeUpdate();
+        entityManager.getTransaction().commit();
+        entityManager.clear();
+        return findById(id);
+    }
+
     public Student updateStudent(Student student){
         Student studentToUpdate = findStudent(student.getId());
         entityManager.getTransaction().begin();

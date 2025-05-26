@@ -22,8 +22,17 @@ public class Main {
            repository.addStudent(student);
 
            student = repository.findById(student.getId());
-           System.out.println("Found student (JPQL" + student.toString());
+           System.out.println(student.getId());
+           System.out.println("Estudiante encontrado " + student.toString());
 
+           student = repository.updateFirstNameById("Leonel", student.getId());
+           System.out.println("Update firstname JQPL: " + student.toString());
+
+           student = repository.updateLastNameById("Massa", student.getId());
+           System.out.println("Update lastname JQPL: " + student.toString());
+
+           repository.deleteStudent(student);
+           repository.close();
        }catch (Exception e){
            System.out.println(e.getMessage());
        }
