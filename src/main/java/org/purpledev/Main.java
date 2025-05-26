@@ -4,6 +4,7 @@ import org.purpledev.model.Student;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
@@ -20,7 +21,9 @@ public class Main {
            StudentRepository repository = new StudentRepository();
            repository.addStudent(student);
 
-           System.out.println("Added student: " + student.toString());
+           student = repository.findById(student.getId());
+           System.out.println("Found student (JPQL" + student.toString());
+
        }catch (Exception e){
            System.out.println(e.getMessage());
        }

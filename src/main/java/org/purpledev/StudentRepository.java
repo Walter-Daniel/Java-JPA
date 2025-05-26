@@ -3,7 +3,10 @@ package org.purpledev;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
+import jakarta.persistence.Query;
 import org.purpledev.model.Student;
+
+import java.util.List;
 
 public class StudentRepository {
 
@@ -26,6 +29,12 @@ public class StudentRepository {
         return entityManager.find(Student.class, id);
     }
 
+    public Student findById(Long id) {
+        Query query = entityManager.createNamedQuery("find student by id");
+        query.setParameter("id", id);
+        return (Student) query.getSingleResult();
+    }
+
     public Student updateStudent(Student student){
         Student studentToUpdate = findStudent(student.getId());
         entityManager.getTransaction().begin();
@@ -42,6 +51,23 @@ public class StudentRepository {
         entityManager.getTransaction().begin();
         entityManager.remove(student);
         entityManager.getTransaction().commit();
+    }
+
+    public List<String> findFirstnames(){
+        entityManager.getTransaction().begin();
+
+        Query query = entityManager.createQuery("Select s.firstname from Student s");
+        //entityManager.getTransaction().commit();
+        return query.getResultList();
+    }
+
+    public List<String> findLastnames(){
+        entityManager.getTransaction().begin();
+
+        Query query = entityManager.createQuery("Select s.lastname from Student s");
+        //entityManager.getTransaction().commit();
+
+        return query.getResultList();
     }
 
     public void close(){
