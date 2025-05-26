@@ -31,7 +31,7 @@ public class Main {
            student = repository.updateLastNameById("Massa", student.getId());
            System.out.println("Update lastname JQPL: " + student.toString());
 
-           repository.deleteStudent(student);
+           repository.deleteById(student.getId());
            repository.close();
        }catch (Exception e){
            System.out.println(e.getMessage());
