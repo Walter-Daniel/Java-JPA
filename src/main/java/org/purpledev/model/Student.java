@@ -5,6 +5,7 @@ import java.util.Date;
 
 @Entity
 @Table(name = "STUDENTS")
+@NamedQuery(name = "find student by id", query = "Select s from Student s where s.id = :id")
 public class Student {
 
     @Id
