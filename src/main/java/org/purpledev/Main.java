@@ -39,6 +39,9 @@ public class Main {
 
             System.out.println("Cantidad de estudiantes: " + repository.count());
 
+            students = repository.findSortingByFirstName();
+            students.forEach(System.out::println);
+
             repository.deleteById(student.getId());
             repository.close();
         } catch (Exception e) {

@@ -107,6 +107,12 @@ public class StudentRepository {
         return query.getResultList();
     }
 
+    public List<Student> findSortingByFirstName(){
+        Query query = entityManager.createQuery("Select s from Student s order by s.firstname desc");
+        return query.getResultList();
+    }
+
+
     public Long count(){
         Query query = entityManager.createQuery("Select count(s) from Student s");
         return (Long) query.getSingleResult();
