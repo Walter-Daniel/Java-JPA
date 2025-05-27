@@ -25,8 +25,6 @@ public class Student {
     @OneToOne
     private School school;
 
-
-
     public Student() {
     }
 

@@ -1,5 +1,6 @@
 package org.purpledev;
 
+import org.purpledev.model.School;
 import org.purpledev.model.Student;
 
 import java.text.SimpleDateFormat;
@@ -19,8 +20,25 @@ public class Main {
             student.setBirthday(birthday);
 
             StudentRepository repository = new StudentRepository();
+
+            SchoolRepository schoolRepository = new SchoolRepository();
+
             repository.addStudent(student);
 
+            School school = new School();
+            school.setName("Campos de las carreras");
+            school.setCity("Tucumán Capital");
+
+            schoolRepository.addSchool(school);
+            System.out.println("Se agregó Escuela: " + school.toString());
+
+            repository.addSchool(student.getId(), school);
+            System.out.println("Escuela y estudiante: " + student);
+
+            student = repository.findById(student.getId());
+            System.out.println("Busqueda de estudiante con escuela: " + student);
+
+            //Persistence operations and JPQL
             student = repository.findById(student.getId());
             System.out.println(student.getId());
             System.out.println("Estudiante encontrado " + student.toString());
