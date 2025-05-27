@@ -97,6 +97,16 @@ public class StudentRepository {
         return query.getResultList();
     }
 
+    public List<Student> findByFirstNameStartWith(String keyword) {
+        Query query = entityManager.createQuery("Select s from Student s where s.firstname like '" + keyword + "%'");
+        return query.getResultList();
+    }
+
+    public List<Student> findByLastNameEndWith(String keyword) {
+        Query query = entityManager.createQuery("Select s from Student s where s.lastname like '%" + keyword + "'");
+        return query.getResultList();
+    }
+
     public void close(){
         this.entityManager.close();
         this.emf.close();
