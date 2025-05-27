@@ -37,6 +37,8 @@ public class Main {
             students = repository.findByLastNameEndWith("lo");
             students.forEach(System.out::println);
 
+            System.out.println("Cantidad de estudiantes: " + repository.count());
+
             repository.deleteById(student.getId());
             repository.close();
         } catch (Exception e) {
