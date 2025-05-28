@@ -1,11 +1,11 @@
-package org.purpledev;
+package org.purpledev.repository;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
 import jakarta.persistence.Query;
-import org.purpledev.model.School;
 import org.purpledev.model.Student;
+import org.purpledev.model.Tutor;
 
 import java.util.List;
 
@@ -26,10 +26,10 @@ public class StudentRepository {
         return student;
     }
 
-    public Student addSchool(Long id, School school) {
+    public Student addTutor(Long id, Tutor tutor) {
         entityManager.getTransaction().begin();
         Student student = findById(id);
-        student.setSchool(school);
+        student.setTutor(tutor);
         entityManager.getTransaction().commit();
         return student;
     }

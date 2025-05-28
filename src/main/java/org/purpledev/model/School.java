@@ -1,19 +1,23 @@
 package org.purpledev.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+
+import javax.lang.model.element.Name;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
+@Table(name = "SCHOOL")
 public class School {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-
     private String name;
     private String city;
+
+    @OneToMany(targetEntity =Student.class)
+    private Set<Student> students = new HashSet<>();
 
     public School(String city, String name) {
         this.city = city;
@@ -45,6 +49,14 @@ public class School {
 
     public void setCity(String city) {
         this.city = city;
+    }
+
+    public Set<Student> getStudents() {
+        return students;
+    }
+
+    public void setStudents(Set<Student> students) {
+        this.students = students;
     }
 
     @Override

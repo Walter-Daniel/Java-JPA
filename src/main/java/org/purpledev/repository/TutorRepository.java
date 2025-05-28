@@ -1,53 +1,48 @@
-package org.purpledev;
+package org.purpledev.repository;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
-import jakarta.persistence.Query;
-import org.purpledev.model.School;
+import org.purpledev.model.Tutor;
 
-public class SchoolRepository {
+public class TutorRepository {
     private EntityManager entityManager;
     private EntityManagerFactory emf;
 
-    public SchoolRepository() {
+    public TutorRepository() {
         this.emf = Persistence.createEntityManagerFactory("student_pu");
         this.entityManager = this.emf.createEntityManager();
     }
 
-    public SchoolRepository(String pu) {
+    public TutorRepository(String pu) {
         this.emf = Persistence.createEntityManagerFactory(pu);
     }
 
-    public School addSchool(School school){
+    public Tutor addTutor(Tutor tutor){
         entityManager.getTransaction().begin();
-        entityManager.persist(school);
+        entityManager.persist(tutor);
         entityManager.getTransaction().commit();
-        return  school;
+        return tutor;
     }
 
-    public School find(Long id){
-        return entityManager.find(School.class, id);
+    public Tutor find(Long id){
+        return entityManager.find(Tutor.class, id);
     }
 
-    public School findById(Long id) {
-        return entityManager.find(School.class, id);
-    }
-
-    public School updateSchool(School school){
-        School schoolToUpdate = find(school.getId());
+    public Tutor updateTutor(Tutor tutor){
+        Tutor tutorToUpdate = find(tutor.getId());
         entityManager.getTransaction().begin();
 
-        schoolToUpdate.setName(school.getName());
-        schoolToUpdate.setCity(school.getCity());
+        tutorToUpdate.setFirstname(tutor.getFirstname());
+        tutorToUpdate.setLastname(tutor.getLastname());
 
         entityManager.getTransaction().commit();
-        return schoolToUpdate;
+        return tutorToUpdate;
     }
 
-    public void deleteSchool(School school){
+    public void deleteTutor(Tutor tutor){
         entityManager.getTransaction().begin();
-        entityManager.remove(school);
+        entityManager.remove(tutor);
         entityManager.getTransaction().commit();
     }
 

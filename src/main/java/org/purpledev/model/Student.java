@@ -23,7 +23,7 @@ public class Student {
     private Date birthday;
 
     @OneToOne
-    private School school;
+    private Tutor tutor;
 
     public Student() {
     }
@@ -67,12 +67,12 @@ public class Student {
         this.birthday = birthday;
     }
 
-    public School getSchool() {
-        return school;
+    public Tutor getTutor() {
+        return tutor;
     }
 
-    public void setSchool(School school) {
-        this.school = school;
+    public void setTutor(Tutor tutor) {
+        this.tutor = tutor;
     }
 
     @Override
@@ -82,7 +82,7 @@ public class Student {
                 ", firstname='" + firstname + '\'' +
                 ", lastname='" + lastname + '\'' +
                 ", birthday=" + birthday +
-                ", school=" + school +
+                ", tutor=" + tutor +
                 '}';
     }
 }
