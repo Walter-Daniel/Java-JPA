@@ -22,6 +22,9 @@ public class Student {
     @Temporal(TemporalType.DATE)
     private Date birthday;
 
+    @OneToOne
+    private Tutor tutor;
+
     public Student() {
     }
 
@@ -64,6 +67,14 @@ public class Student {
         this.birthday = birthday;
     }
 
+    public Tutor getTutor() {
+        return tutor;
+    }
+
+    public void setTutor(Tutor tutor) {
+        this.tutor = tutor;
+    }
+
     @Override
     public String toString() {
         return "Student{" +
@@ -71,6 +82,7 @@ public class Student {
                 ", firstname='" + firstname + '\'' +
                 ", lastname='" + lastname + '\'' +
                 ", birthday=" + birthday +
+                ", tutor=" + tutor +
                 '}';
     }
 }
